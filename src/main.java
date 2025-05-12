@@ -24,4 +24,5 @@ public class main {
 
         System.out.println("\nValor total del inventario: $" + inventario.calcularValorTotal());
 }
+
 }
