@@ -40,7 +40,7 @@ public class main {
                     int tiempoEntrega = sc.nextInt();
                     System.out.print("Cantidad: ");
                     int cantidad = sc.nextInt();
-                    System.out.print("Fecha de vencimiento (YYYY-MM-DD): ");
+                    System.out.print("Fecha de vencimiento del producto (YYYY-MM-DD): ");
                     String fecha = sc.next();
                     LocalDate fechaVencimiento = LocalDate.parse(fecha);
 
