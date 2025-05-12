@@ -6,16 +6,6 @@ public class main {
         Scanner sc = new Scanner(System.in);
         Inventario inventario = new Inventario(200, 1000);
         boolean continuar = true;
-        Proveedor prov1 = new Proveedor("Proveedor Andes", 5);
-        Producto p1 = new Producto("001", "Té Verde", "TéOrgánico", 1.2, 2.5, prov1);
-        Producto p2 = new Producto("002", "Aceite de Lavanda", "AceiteEsencial", 3.5, 6.5, prov1);
-
-        StockItem si1 = new StockItem(p1, 100, LocalDate.of(2025, 7, 15));
-        StockItem si2 = new StockItem(p2, 50, LocalDate.of(2025, 5, 1));
-
-
-        inventario.agregarStockItem(si1);
-        inventario.agregarStockItem(si2);
 
 
 
@@ -25,7 +15,8 @@ public class main {
             System.out.println("2. Mostrar inventario");
             System.out.println("3. Eliminar productos vencidos");
             System.out.println("4. Calcular valor total del inventario");
-            System.out.println("5. Salir");
+            System.out.println("5. Modificar producto existente");
+            System.out.println("6. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = sc.nextInt();
             sc.nextLine(); // limpiar buffer
@@ -71,6 +62,77 @@ public class main {
                     System.out.println("Valor total del inventario: $" + inventario.calcularValorTotal());
                     break;
                 case 5:
+
+                    System.out.print("Ingrese el ID del producto a modificar: ");
+                    String buscarId = sc.nextLine();
+                    StockItem modItem = inventario.buscarPorId(buscarId);
+                    if (modItem != null) {
+                        boolean modificando = true;
+                        while (modificando) {
+                            System.out.println("\n--- Menú de modificación ---");
+                            System.out.println("1. Nombre");
+                            System.out.println("2. Categoría");
+                            System.out.println("3. Precio de compra");
+                            System.out.println("4. Precio de venta");
+                            System.out.println("5. Nombre del proveedor");
+                            System.out.println("6. Tiempo de entrega");
+                            System.out.println("7. Cantidad");
+                            System.out.println("8. Fecha de vencimiento");
+                            System.out.println("9. Salir de modificación");
+                            System.out.print("Seleccione el campo a modificar: ");
+                            int op = sc.nextInt(); sc.nextLine();
+                            Producto p = modItem.getProducto();
+                            switch (op) {
+                                case 1:
+                                    System.out.print("Nuevo nombre: ");
+                                    p.setNombre(sc.nextLine());
+                                    break;
+                                case 2:
+                                    System.out.print("Nueva categoría: ");
+                                    p.setCategoria(sc.nextLine());
+                                    break;
+                                case 3:
+                                    System.out.print("Nuevo precio de compra: ");
+                                    p.setPrecioCompra(sc.nextDouble());
+                                    sc.nextLine();
+                                    break;
+                                case 4:
+                                    System.out.print("Nuevo precio de venta: ");
+                                    p.setPrecioVenta(sc.nextDouble());
+                                    sc.nextLine();
+                                    break;
+                                case 5:
+                                    System.out.print("Nuevo nombre del proveedor: ");
+                                    p.getProveedor().setNombre(sc.nextLine());
+                                    break;
+                                case 6:
+                                    System.out.print("Nuevo tiempo de entrega: ");
+                                    p.getProveedor().setTiempoEntregaDias(sc.nextInt());
+                                    sc.nextLine();
+                                    break;
+                                case 7:
+                                    System.out.print("Nueva cantidad: ");
+                                    modItem.setCantidad(sc.nextInt());
+                                    sc.nextLine();
+                                    break;
+                                case 8:
+                                    System.out.print("Nueva fecha de vencimiento (YYYY-MM-DD): ");
+                                    modItem.setFechaVencimiento(LocalDate.parse(sc.nextLine()));
+                                    break;
+                                case 9:
+                                    modificando = false;
+                                    System.out.println("Modificación finalizada.");
+                                    break;
+                                default:
+                                    System.out.println("Opción inválida.");
+                            }
+                        }
+                    } else {
+                        System.out.println("Producto no encontrado.");
+                    }
+
+                    break;
+                case 6:
                     continuar = false;
                     break;
                 default:

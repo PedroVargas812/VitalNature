@@ -17,8 +17,13 @@ public class Producto {
 
     public String getId() { return id; }
     public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
     public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
     public double getPrecioCompra() { return precioCompra; }
+    public void setPrecioCompra(double precioCompra) { this.precioCompra = precioCompra; }
     public double getPrecioVenta() { return precioVenta; }
+    public void setPrecioVenta(double precioVenta) { this.precioVenta = precioVenta; }
     public Proveedor getProveedor() { return proveedor; }
+    public void setProveedor(Proveedor proveedor) { this.proveedor = proveedor; }
 }

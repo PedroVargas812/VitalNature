@@ -57,4 +57,13 @@ public class Inventario {
     public boolean verificarPresupuesto(double nuevoPedido) {
         return (calcularValorTotal() + nuevoPedido) <= presupuestoMensual;
     }
+
+    public StockItem buscarPorId(String id) {
+        for (StockItem item : stock) {
+            if (item.getProducto().getId().equals(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
